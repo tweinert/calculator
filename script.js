@@ -1,3 +1,4 @@
+// basic math functions
 function add(a, b) {
     return a + b;
 }
@@ -14,7 +15,23 @@ function divide(a, b) {
     return a / b;
 }
 
-console.log("add: " + add(6, 4));
-console.log("subtract: " + subtract(16, 6));
-console.log("multiply: " + multiply(5, 8));
-console.log("divide: " + divide(64, 8));
+// takes 2 numbers and calls math function based on operator
+function operate(operator, a, b) {
+    switch(operator) {
+        case "add":
+            return add(a, b);
+            break;
+        case "subtract":
+            return subtract(a, b);
+            break;
+        case "multiply":
+            return multiply(a, b);
+            break;
+        case "divide":
+            return divide(a, b);
+            break;
+        default:
+            console.log("Error: operator unknown");
+            break;
+    }
+}
