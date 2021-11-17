@@ -1,8 +1,13 @@
 // variables
 const buttons = document.querySelectorAll('button');
 const displayInput = document.querySelector('#input');
+const displayHistory = document.querySelector('#history');
 
 let rawInput = '';
+let input1 = null;
+let input2 = null;
+let selectedOperator = '';
+let hasOperator = false;
 
 // event listeners
 buttons.forEach((button) => {
@@ -51,6 +56,23 @@ function buttonClick(event) {
         let inputNum = this.textContent;
         displayInput.textContent += inputNum;
         rawInput += inputNum;
+        // set input1 or 2 depending on if operator has been selected
+        if (!hasOperator) {
+            if (input1 === null) {
+                input1 = inputNum;
+            } else {
+                input1 += inputNum;
+            }
+        } else {
+            input2 = inputNum;
+        }
+    } else if (this.id == "operatorButton") {
+        if (!hasOperator) {
+            if (input1 != null) {
+                hasOperator;
+                displayHistory.textContent = input1;
+                displayInput.textContent = '';
+            }
+        }
     }
 }
-
