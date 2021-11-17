@@ -1,0 +1,54 @@
+/* Classes */
+.calculatorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 240px;
+}
+
+.displayContainer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    margin: 20px 0 0 0;
+}
+
+.displayContainer div {
+    padding-right: 10px;
+}
+
+.clearButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px
+}
+
+.clearButtonContainer button {
+    width: 100px;
+    height: 50px;
+}
+
+.mathButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 240px;
+    margin: 20px 0px;
+}
+
+.mathButtonContainer button{
+    width: 50px;
+    height: 50px;
+}
+
+#zeroButton {
+    width: 100px;
+}
