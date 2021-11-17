@@ -1,3 +1,14 @@
+// variables
+const buttons = document.querySelectorAll('button');
+const displayInput = document.querySelector('#input');
+
+let rawInput = '';
+
+// event listeners
+buttons.forEach((button) => {
+    button.addEventListener('click', buttonClick);
+});
+
 // basic math functions
 function add(a, b) {
     return a + b;
@@ -31,3 +42,15 @@ function operate(operator, a, b) {
             break;
     }
 }
+
+
+// handle button click
+function buttonClick(event) {
+    // if a number button is clicked
+    if (this.id == "numberButton") {
+        let inputNum = this.textContent;
+        displayInput.textContent += inputNum;
+        rawInput += inputNum;
+    }
+}
+
