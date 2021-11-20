@@ -3,7 +3,6 @@ const buttons = document.querySelectorAll('button');
 const displayInput = document.querySelector('#input');
 const displayHistory = document.querySelector('#history');
 
-let rawInput = '';
 let input1 = null;
 let input2 = null;
 let selectedOperator = '';
@@ -56,7 +55,6 @@ function buttonClick(event) {
     // if a number button is clicked
     if (this.id == "numberButton") {
         displayInput.textContent += inputNum;
-        rawInput += inputNum;
         // set input1 or 2 depending on if operator has been selected
         if (!hasOperator) {
             if (input1 === null) {
@@ -68,55 +66,63 @@ function buttonClick(event) {
             input2 = inputNum;
         }
     } else if (this.id == "operatorButton") {
+        switch (inputNum) {
+            case "+":
+                selectedOperator = "add";
+                break;
+            case "-":
+                selectedOperator = "subtract";
+                break;
+            case "*":
+                selectedOperator = "multiply";
+                break;
+            case "/":
+                selectedOperator = "divide";
+                break;
+            default:
+                console.log("Error: operator unknown");
+                break;
+        }
         if (!hasOperator) {
             if (input1 != null) {
                 hasOperator = true;
                 displayHistory.textContent = input1;
                 displayInput.textContent = '';
-                switch (inputNum) {
-                    case "+":
-                        selectedOperator = "add";
-                        break;
-                    case "-":
-                        selectedOperator = "subtract";
-                        break;
-                    case "*":
-                        selectedOperator = "multiply";
-                        break;
-                    case "/":
-                        selectedOperator = "divide";
-                        break;
-                    default:
-                        console.log("Error: operator unknown");
-                        break;
-                }
             }
         } else {
             // operate
-            
+            let calcResult = operate(selectedOperator, Number(input1), Number(input2));
+            clearAll(true);
+            input1 = calcResult;
+            displayInput.textContent += calcResult;
+            calcResult = null;
+            hasOperator = true;
+            console.log(selectedOperator);
         }
     } else if (this.id == "equalsButton") {
         console.log("equals clicked");
         console.log(input1 + " : " + input2);
         if (hasOperator && input1 != null && input2 != null) {
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
-            console.log(calcResult);
-            // TODO display on screen and set to first input
+            clearAll(false);
+            input1 = calcResult;
+            displayInput.textContent += calcResult;
+            calcResult = null;
         }
     } else if (this.id == "clearButton") {
         clearAll();
-
     } else if (this.id == "backspaceButton") {
 
     }
 }
 
-function clearAll() {
+function clearAll(operatorClicked) {
     input1 = '';
     input2 = '';
-    rawInput = '';
-    selectedOperator = '';
     hasOperator = false;
     displayHistory.textContent = '';
     displayInput.textContent = '';
+    if (!operatorClicked) {
+        selectedOperator = '';
+    }
 }
