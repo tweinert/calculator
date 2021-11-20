@@ -51,9 +51,10 @@ function operate(operator, a, b) {
 
 // handle button click
 function buttonClick(event) {
+    let inputNum = this.textContent;
+    
     // if a number button is clicked
     if (this.id == "numberButton") {
-        let inputNum = this.textContent;
         displayInput.textContent += inputNum;
         rawInput += inputNum;
         // set input1 or 2 depending on if operator has been selected
@@ -69,10 +70,53 @@ function buttonClick(event) {
     } else if (this.id == "operatorButton") {
         if (!hasOperator) {
             if (input1 != null) {
-                hasOperator;
+                hasOperator = true;
                 displayHistory.textContent = input1;
                 displayInput.textContent = '';
+                switch (inputNum) {
+                    case "+":
+                        selectedOperator = "add";
+                        break;
+                    case "-":
+                        selectedOperator = "subtract";
+                        break;
+                    case "*":
+                        selectedOperator = "multiply";
+                        break;
+                    case "/":
+                        selectedOperator = "divide";
+                        break;
+                    default:
+                        console.log("Error: operator unknown");
+                        break;
+                }
             }
+        } else {
+            // operate
+            
         }
+    } else if (this.id == "equalsButton") {
+        console.log("equals clicked");
+        console.log(input1 + " : " + input2);
+        if (hasOperator && input1 != null && input2 != null) {
+            let calcResult = operate(selectedOperator, Number(input1), Number(input2));
+            console.log(calcResult);
+            // TODO display on screen and set to first input
+        }
+    } else if (this.id == "clearButton") {
+        clearAll();
+
+    } else if (this.id == "backspaceButton") {
+
     }
+}
+
+function clearAll() {
+    input1 = '';
+    input2 = '';
+    rawInput = '';
+    selectedOperator = '';
+    hasOperator = false;
+    displayHistory.textContent = '';
+    displayInput.textContent = '';
 }
