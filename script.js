@@ -94,10 +94,9 @@ function buttonClick(event) {
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
             clearAll(true);
             input1 = calcResult;
-            displayInput.textContent += calcResult;
+            displayHistory.textContent = calcResult;
             calcResult = null;
             hasOperator = true;
-            console.log(selectedOperator);
         }
     } else if (this.id == "equalsButton") {
         console.log("equals clicked");
