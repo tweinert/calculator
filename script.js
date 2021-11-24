@@ -33,13 +33,13 @@ function divide(a, b) {
 // takes 2 numbers and calls math function based on operator
 function operate(operator, a, b) {
     switch(operator) {
-        case "add":
+        case "+":
             return add(a, b);
-        case "subtract":
+        case "-":
             return subtract(a, b);
-        case "multiply":
+        case "*":
             return multiply(a, b);
-        case "divide":
+        case "/":
             return divide(a, b);
         default:
             console.log("Error: operator unknown");
@@ -70,27 +70,28 @@ function buttonClick(event) {
     } else if (this.id == "operatorButton") {
         if (!hasOperator) {
             if (input1 != null) {
-                selectedOperator = getOperatorName(inputNum);
+                selectedOperator = inputNum;
                 hasOperator = true;
-                displayHistory.textContent = input1 + " " + inputNum;
+                displayHistory.textContent = input1 + " " + selectedOperator;
                 displayInput.textContent = '';
             }
         } else {
             // operate (previous operater)
+            console.log(selectedOperator);
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
             clearAll(true);
             input1 = calcResult;
-            calcResult = null;
-            selectedOperator = getOperatorName(inputNum);
+            selectedOperator = inputNum;
             hasOperator = true;
             displayHistory.textContent = calcResult + " " + inputNum;
+            calcResult = null;
         }
     } else if (this.id == "equalsButton") {
         console.log("equals clicked");
         console.log(input1 + " : " + input2);
         if (hasOperator && input1 != null && input2 != null) {
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
-            displayHistory.textContent = input1 + " " + input2 + " = ";
+            displayHistory.textContent = input1 + selectedOperator + input2 + " = ";
             clearAll(false);
             input1 = calcResult;
             displayInput.textContent += calcResult;
@@ -98,6 +99,7 @@ function buttonClick(event) {
         }
     } else if (this.id == "clearButton") {
         clearAll();
+        displayHistory.textContent = '';
     } else if (this.id == "backspaceButton") {
 
     }
@@ -107,13 +109,13 @@ function clearAll(operatorClicked) {
     input1 = '';
     input2 = '';
     hasOperator = false;
-    displayHistory.textContent = '';
     displayInput.textContent = '';
     if (!operatorClicked) {
         selectedOperator = '';
     }
 }
 
+/*
 function getOperatorName(operatorButtonID) {
     switch (operatorButtonID) {
         case "+":
@@ -129,3 +131,4 @@ function getOperatorName(operatorButtonID) {
             break;
     }
 }
+*/
