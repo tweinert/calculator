@@ -90,6 +90,7 @@ function buttonClick(event) {
         console.log(input1 + " : " + input2);
         if (hasOperator && input1 != null && input2 != null) {
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
+            displayHistory.textContent = input1 + " " + input2 + " = ";
             clearAll(false);
             input1 = calcResult;
             displayInput.textContent += calcResult;
