@@ -62,41 +62,28 @@ function buttonClick(event) {
             } else {
                 input1 += inputNum;
             }
-        } else {
+        } else if (input2 === null) {
             input2 = inputNum;
+        } else {
+            input2 += inputNum;
         }
     } else if (this.id == "operatorButton") {
-        switch (inputNum) {
-            case "+":
-                selectedOperator = "add";
-                break;
-            case "-":
-                selectedOperator = "subtract";
-                break;
-            case "*":
-                selectedOperator = "multiply";
-                break;
-            case "/":
-                selectedOperator = "divide";
-                break;
-            default:
-                console.log("Error: operator unknown");
-                break;
-        }
         if (!hasOperator) {
             if (input1 != null) {
+                selectedOperator = getOperatorName(inputNum);
                 hasOperator = true;
-                displayHistory.textContent = input1;
+                displayHistory.textContent = input1 + " " + inputNum;
                 displayInput.textContent = '';
             }
         } else {
-            // operate
+            // operate (previous operater)
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
             clearAll(true);
             input1 = calcResult;
-            displayHistory.textContent = calcResult;
             calcResult = null;
+            selectedOperator = getOperatorName(inputNum);
             hasOperator = true;
+            displayHistory.textContent = calcResult + " " + inputNum;
         }
     } else if (this.id == "equalsButton") {
         console.log("equals clicked");
@@ -123,5 +110,21 @@ function clearAll(operatorClicked) {
     displayInput.textContent = '';
     if (!operatorClicked) {
         selectedOperator = '';
+    }
+}
+
+function getOperatorName(operatorButtonID) {
+    switch (operatorButtonID) {
+        case "+":
+            return "add";
+        case "-":
+            return "subtract";
+        case "*":
+            return "multiply";
+        case "/":
+            return  "divide";
+        default:
+            console.log("Error: operator unknown");
+            break;
     }
 }

@@ -11,7 +11,7 @@
 .displayContainer{
     display: flex;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: column;
     width: 200px;
     height: 50px;
@@ -21,6 +21,9 @@
 
 .displayContainer div {
     padding-right: 10px;
+    height: 50%;
+    display: flex;
+    align-items: center;
 }
 
 .clearButtonContainer {
