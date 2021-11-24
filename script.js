@@ -79,7 +79,7 @@ function buttonClick(event) {
             // operate (previous operater)
             console.log(selectedOperator);
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
-            clearAll(true);
+            clearAll();
             input1 = calcResult;
             selectedOperator = inputNum;
             hasOperator = true;
@@ -92,7 +92,8 @@ function buttonClick(event) {
         if (hasOperator && input1 != null && input2 != null) {
             let calcResult = operate(selectedOperator, Number(input1), Number(input2));
             displayHistory.textContent = input1 + selectedOperator + input2 + " = ";
-            clearAll(false);
+            clearAll();
+            selectedOperator = '';
             input1 = calcResult;
             displayInput.textContent += calcResult;
             calcResult = null;
@@ -102,33 +103,14 @@ function buttonClick(event) {
         displayHistory.textContent = '';
     } else if (this.id == "backspaceButton") {
 
+    } else if (this.id == "periodButton") {
+        
     }
 }
 
-function clearAll(operatorClicked) {
+function clearAll() {
     input1 = '';
     input2 = '';
     hasOperator = false;
     displayInput.textContent = '';
-    if (!operatorClicked) {
-        selectedOperator = '';
-    }
 }
-
-/*
-function getOperatorName(operatorButtonID) {
-    switch (operatorButtonID) {
-        case "+":
-            return "add";
-        case "-":
-            return "subtract";
-        case "*":
-            return "multiply";
-        case "/":
-            return  "divide";
-        default:
-            console.log("Error: operator unknown");
-            break;
-    }
-}
-*/
