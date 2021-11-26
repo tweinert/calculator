@@ -118,11 +118,10 @@ function handleEqualsButtonClick() {
         let calcResult = operate(selectedOperator, Number(input1), Number(input2));
         displayHistory.textContent = input1 + selectedOperator + input2 + " = ";
         clearAll();
-        selectedOperator = '';
         input1 = calcResult;
         displayInput.textContent += calcResult;
         calcResult = null;
-    }
+    } 
 }
 
 
@@ -136,8 +135,6 @@ function clearAll() {
 
 /*
 TODO
-operator pressed twice
-equals clicked without 2 inputs and operator
 backspace
 dot button
 */
