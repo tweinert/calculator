@@ -1,11 +1,15 @@
 /* Classes */
+
 .calculatorContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin: auto;
+    margin-top: 100px;
     border: 1px solid black;
     width: 240px;
+    background-color: #D4F4EC;
 }
 
 .displayContainer{
@@ -17,6 +21,7 @@
     height: 50px;
     border: 1px solid black;
     margin: 20px 0 0 0;
+    background-color: white;
 }
 
 .displayContainer div {
@@ -52,6 +57,16 @@
     height: 50px;
 }
 
-#zeroButton {
-    width: 100px;
+/* ID */
+
+#clearButton, #backspaceButton {
+    background-color: #FFD8C5;
+}
+
+#numberButton, #dotButton {
+    background-color: #70D0C6;
+}
+
+#operatorButton, #equalsButton {
+    background-color: #FEA889;
 }

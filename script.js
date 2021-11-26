@@ -64,7 +64,7 @@ function buttonClick(event) {
         handleClearButtonClick();
     } else if (this.id == "backspaceButton") {
         handleBackspaceButtonClick();
-    } else if (this.id == "periodButton") {
+    } else if (this.id == "dotButton") {
         handleDotButtonClick();
     }
 }
@@ -158,8 +158,3 @@ function clearValues() {
     hasOperator = false;
     displayInput.textContent = '';
 }
-
-/*
-TODO
-dot button
-*/
