@@ -14,6 +14,10 @@ buttons.forEach((button) => {
     button.addEventListener('click', buttonClick);
 });
 
+window.onkeydown = function(event) {
+    handleKeyboardPress(event);
+}
+
 // basic math functions
 function add(a, b) {
     return a + b;
@@ -147,6 +151,13 @@ function handleDotButtonClick() {
         // second input
         input2 += ".";
         displayInput.textContent = input2;
+    }
+}
+
+function handleKeyboardPress(event) {
+    if (event.keyCode == 97 || 49) {
+        // 1 pressed
+        
     }
 }
 
