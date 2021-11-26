@@ -61,12 +61,11 @@ function buttonClick(event) {
     } else if (this.id == "equalsButton") {
         handleEqualsButtonClick();
     } else if (this.id == "clearButton") {
-        clearAll();
-        displayHistory.textContent = '';
+        handleClearButtonClick();
     } else if (this.id == "backspaceButton") {
-
+        handleBackspaceButtonClick();
     } else if (this.id == "periodButton") {
-
+        handleDotButtonClick();
     }
 }
 
@@ -98,7 +97,7 @@ function handleOperatorButtonClick() {
         // operate using previous operater
         console.log(selectedOperator);
         let calcResult = operate(selectedOperator, Number(input1), Number(input2));
-        clearAll();
+        clearValues();
         input1 = calcResult;
         selectedOperator = inputNum;
         hasOperator = true;
@@ -117,16 +116,37 @@ function handleEqualsButtonClick() {
     if (hasOperator && input1 != null && input2 != null) {
         let calcResult = operate(selectedOperator, Number(input1), Number(input2));
         displayHistory.textContent = input1 + selectedOperator + input2 + " = ";
-        clearAll();
+        clearValues();
         input1 = calcResult;
         displayInput.textContent += calcResult;
         calcResult = null;
     } 
 }
 
+function handleClearButtonClick() {
+    clearValues();
+    displayHistory.textContent = '';
+}
+
+function handleBackspaceButtonClick() {
+    console.log("backspace");
+    if (!hasOperator && input1 != null && input2 == null ) {
+        console.log("true");
+        input1 = input1.slice(0, -1);
+        displayInput.textContent = input1;
+    } else if (hasOperator && input1 != null && input2 != null) {
+        input2 = input2.slice(0, -1);
+        displayInput.textContent = input2;
+    }
+}
+
+function handleDotButtonClick() {
+
+}
 
 
-function clearAll() {
+
+function clearValues() {
     input1 = null;
     input2 = null;
     hasOperator = false;
@@ -135,6 +155,5 @@ function clearAll() {
 
 /*
 TODO
-backspace
 dot button
 */
