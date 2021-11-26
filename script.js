@@ -129,9 +129,7 @@ function handleClearButtonClick() {
 }
 
 function handleBackspaceButtonClick() {
-    console.log("backspace");
     if (!hasOperator && input1 != null && input2 == null ) {
-        console.log("true");
         input1 = input1.slice(0, -1);
         displayInput.textContent = input1;
     } else if (hasOperator && input1 != null && input2 != null) {
@@ -141,7 +139,15 @@ function handleBackspaceButtonClick() {
 }
 
 function handleDotButtonClick() {
-
+    if (!hasOperator && input1 != null && input2 == null ) {
+        // first input
+        input1 += ".";
+        displayInput.textContent = input1;
+    } else if (hasOperator && input1 != null && input2 != null) {
+        // second input
+        input2 += ".";
+        displayInput.textContent = input2;
+    }
 }
 
 
